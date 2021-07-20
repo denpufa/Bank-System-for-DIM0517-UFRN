@@ -8,9 +8,5 @@ void main() {
 
     expect(c.number, equals(300));
     expect(c.currentValue, equals(200.1));
-
-    c.currentValue += 100;
-
-    expect(c.currentValue, (300.1));
   });
 }
