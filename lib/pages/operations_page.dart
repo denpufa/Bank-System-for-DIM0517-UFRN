@@ -21,7 +21,7 @@ class _OperationsPageState extends State<OperationsPage> {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/create');
+                Navigator.pushNamed(context, '/consult-balance');
               },
               child: Text("Consultar saldo"),
             ),

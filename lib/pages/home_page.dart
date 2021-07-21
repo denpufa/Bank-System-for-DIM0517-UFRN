@@ -27,7 +27,9 @@ class _HomePageState extends State<HomePage> {
           ),
           SizedBox(height: 10),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/operations');
+            },
             child: Text("Operações"),
           ),
         ],
