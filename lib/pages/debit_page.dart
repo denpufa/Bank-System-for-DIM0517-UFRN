@@ -88,7 +88,7 @@ class _DebitPageState extends State<DebitPage> {
                           }
                         }
                       },
-                      child: Text("Criar"))
+                      child: Text("Debitar"))
                 ],
               ),
             )

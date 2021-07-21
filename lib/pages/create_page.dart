@@ -74,7 +74,7 @@ class _CreatePageState extends State<CreatePage> {
                             }
                           }
                         },
-                        child: Text("Creditar"))
+                        child: Text("Criar conta"))
                   ],
                 ),
               )
