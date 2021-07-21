@@ -8,6 +8,24 @@ class Operation {
     return created;
   }
 
+
+  void transfer(int from, int to, double value) {
+    Data.accounts.forEach((a) {
+      if (a.number == from) {
+        a.currentValue -= value;
+      } else if (a.number == to) {
+        a.currentValue += value;
+      }
+    });
+  }
+
+  void debit(int number, double value) {
+    Data.accounts.forEach((a) {
+      if (a.number == number) {
+        a.currentValue -= value;
+      }
+    });
+  }
   double consultBalance(int number) {
     double balance = 0.0;
     Data.accounts.forEach((element) {
