@@ -1,4 +1,3 @@
-import 'package:bank_system/back_end/data.dart';
 import 'package:bank_system/back_end/models/account.dart';
 import 'package:bank_system/back_end/operations.dart';
 import 'package:flutter_test/flutter_test.dart';
