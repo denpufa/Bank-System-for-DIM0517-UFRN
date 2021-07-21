@@ -10,4 +10,11 @@ void main() {
     expect(created.currentValue, equals(ac.currentValue));
     expect(created.number, equals(ac.number));
   });
+
+  test("consult balance", () {
+    Operation op = Operation();
+    var created = op.createAccount(123);
+    var consult = op.consultBalance(123);
+    expect(created.currentValue, equals(consult));
+  });
 }
