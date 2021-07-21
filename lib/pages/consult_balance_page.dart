@@ -1,15 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:bank_system/back_end/operations.dart';
+import 'package:flutter/material.dart';
 
-class CreatePage extends StatefulWidget {
-  const CreatePage({Key? key}) : super(key: key);
+class ConsultBalancePage extends StatefulWidget {
+  const ConsultBalancePage({Key? key}) : super(key: key);
 
   @override
-  _CreatePageState createState() => _CreatePageState();
+  _ConsultBalancePageState createState() => _ConsultBalancePageState();
 }
 
-class _CreatePageState extends State<CreatePage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+class _ConsultBalancePageState extends State<ConsultBalancePage> {
+  final GlobalKey<FormState> _formKeyBalance = GlobalKey<FormState>();
   TextEditingController _numberController = TextEditingController();
 
   var ops = Operation();
@@ -19,7 +19,7 @@ class _CreatePageState extends State<CreatePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("GitBak"),
+        title: Text("Consultar Saldo"),
       ),
       body: Center(
         child: Padding(
@@ -28,10 +28,10 @@ class _CreatePageState extends State<CreatePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Form(
-                key: _formKey,
+                key: _formKeyBalance,
                 child: Column(
                   children: [
-                    Text("Criar conta"),
+                    Text("Consultar saldo da conta"),
                     SizedBox(height: 30),
                     TextFormField(
                       controller: _numberController,
@@ -49,16 +49,20 @@ class _CreatePageState extends State<CreatePage> {
                     SizedBox(height: 30),
                     ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKeyBalance.currentState!.validate()) {
                             try {
-                              ops.createAccount(
+                              ops.consultBalance(
                                   int.parse(_numberController.text));
                               showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
-                                      title: Text("sucesso!"),
-                                      content: Text("cadastro realizado"),
+                                      title: Text("Consulta realizada:"),
+                                      content: Text('Saldo: R\$ ' +
+                                          ops
+                                              .consultBalance(int.parse(
+                                                  _numberController.text))
+                                              .toString()),
                                     );
                                   });
                             } catch (e) {
@@ -74,7 +78,7 @@ class _CreatePageState extends State<CreatePage> {
                             }
                           }
                         },
-                        child: Text("Creditar"))
+                        child: Text("Consultar"))
                   ],
                 ),
               )

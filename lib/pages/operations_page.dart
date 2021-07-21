@@ -21,13 +21,15 @@ class _OperationsPageState extends State<OperationsPage> {
           children: [
             ElevatedButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/create');
+                Navigator.pushNamed(context, '/consult-balance');
               },
               child: Text("Consultar saldo"),
             ),
             SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/credit');
+              },
               child: Text("Creditar"),
             ),
             SizedBox(height: 10),
