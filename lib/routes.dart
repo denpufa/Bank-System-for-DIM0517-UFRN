@@ -5,4 +5,5 @@ Map<String, WidgetBuilder> routes = {
   '/create': (context) => CreatePage(),
   '/operations': (context) => OperationsPage(),
   '/consult-balance': (context) => ConsultBalancePage(),
+  '/credit': (context) => CreditPage(),
 };

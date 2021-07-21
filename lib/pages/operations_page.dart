@@ -27,7 +27,9 @@ class _OperationsPageState extends State<OperationsPage> {
             ),
             SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/credit');
+              },
               child: Text("Creditar"),
             ),
             SizedBox(height: 10),

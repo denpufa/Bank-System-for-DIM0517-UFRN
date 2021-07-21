@@ -1,17 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:bank_system/back_end/operations.dart';
+import 'package:flutter/material.dart';
 
-class CreatePage extends StatefulWidget {
-  const CreatePage({Key? key}) : super(key: key);
+class CreditPage extends StatefulWidget {
+  const CreditPage({Key? key}) : super(key: key);
 
   @override
-  _CreatePageState createState() => _CreatePageState();
+  _CreditPageState createState() => _CreditPageState();
 }
 
-class _CreatePageState extends State<CreatePage> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+class _CreditPageState extends State<CreditPage> {
+  final GlobalKey<FormState> _formKeyCredit = GlobalKey<FormState>();
   TextEditingController _numberController = TextEditingController();
-
+  TextEditingController _valueController = TextEditingController();
   var ops = Operation();
 
   @override
@@ -19,7 +19,7 @@ class _CreatePageState extends State<CreatePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("GitBak"),
+        title: Text("Creditar"),
       ),
       body: Center(
         child: Padding(
@@ -28,10 +28,10 @@ class _CreatePageState extends State<CreatePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Form(
-                key: _formKey,
+                key: _formKeyCredit,
                 child: Column(
                   children: [
-                    Text("Criar conta"),
+                    Text("Creditar um valor a conta"),
                     SizedBox(height: 30),
                     TextFormField(
                       controller: _numberController,
@@ -47,18 +47,37 @@ class _CreatePageState extends State<CreatePage> {
                       ),
                     ),
                     SizedBox(height: 30),
+                    TextFormField(
+                      controller: _valueController,
+                      validator: (value) {
+                        if (value == "") {
+                          return "digite um número";
+                        }
+                      },
+                      autovalidateMode: AutovalidateMode.always,
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: "valor creditado",
+                      ),
+                    ),
+                    SizedBox(height: 30),
                     ElevatedButton(
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
+                          if (_formKeyCredit.currentState!.validate()) {
                             try {
-                              ops.createAccount(
-                                  int.parse(_numberController.text));
+                              // print(_valueController.text);
+                              double balance = ops.credit(
+                                  int.parse(_numberController.text),
+                                  double.parse(_valueController.text));
+                              setState(() {});
+                              // print(balance);
                               showDialog(
                                   context: context,
                                   builder: (context) {
                                     return AlertDialog(
-                                      title: Text("sucesso!"),
-                                      content: Text("cadastro realizado"),
+                                      title: Text("Creditado com sucesso:"),
+                                      content: Text(
+                                          'Saldo: R\$ ' + balance.toString()),
                                     );
                                   });
                             } catch (e) {
@@ -74,7 +93,7 @@ class _CreatePageState extends State<CreatePage> {
                             }
                           }
                         },
-                        child: Text("Creditar"))
+                        child: Text("Consultar"))
                   ],
                 ),
               )
