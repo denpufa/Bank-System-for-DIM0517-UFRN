@@ -25,7 +25,7 @@ class Operation {
         a.currentValue -= value;
       }
     });
-
+  }
   double consultBalance(int number) {
     double balance = 0.0;
     Data.accounts.forEach((element) {
