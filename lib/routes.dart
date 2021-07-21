@@ -6,4 +6,6 @@ Map<String, WidgetBuilder> routes = {
   '/operations': (context) => OperationsPage(),
   '/consult-balance': (context) => ConsultBalancePage(),
   '/credit': (context) => CreditPage(),
+  '/debit': (context) => DebitPage(),
+  '/transfer': (context) => TransferPage()
 };

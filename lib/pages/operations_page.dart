@@ -34,12 +34,16 @@ class _OperationsPageState extends State<OperationsPage> {
             ),
             SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/debit');
+              },
               child: Text("Debitar"),
             ),
             SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, '/transfer');
+              },
               child: Text("Transferência"),
             ),
           ],
