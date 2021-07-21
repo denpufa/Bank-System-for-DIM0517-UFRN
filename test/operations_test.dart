@@ -17,4 +17,11 @@ void main() {
     var consult = op.consultBalance(123);
     expect(created.currentValue, equals(consult));
   });
+
+  test("credit", () {
+    Operation op = Operation();
+    var created = op.createAccount(123);
+    var credit = op.credit(123, 100.0);
+    expect(created.currentValue, equals(credit));
+  });
 }
