@@ -12,6 +12,8 @@ void main() {
     expect(created.number, equals(ac.number));
   });
 
+  ///this tests are intregate tests not units
+  /* 
   test("transfer test", () {
     Operation op = Operation();
     op.createAccount(10);
@@ -26,7 +28,7 @@ void main() {
     op.createAccount(10);
     op.debit(10, 20);
     expect(Data.accounts[0].currentValue, equals(-20));
-  });
+  }); */
   test("consult balance", () {
     Operation op = Operation();
     var created = op.createAccount(123);
