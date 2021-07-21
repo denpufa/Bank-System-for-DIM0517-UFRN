@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:bank_system/pages/consult_balance_page.dart';
 import 'package:bank_system/pages/create_page.dart';
 import 'package:bank_system/pages/credit_page.dart';
@@ -9,6 +7,8 @@ import 'package:bank_system/pages/transfer_page.dart';
 import 'package:bank_system/shared/themes/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+part 'routes.dart';
 
 void main() {
   runApp(MaterialApp(
