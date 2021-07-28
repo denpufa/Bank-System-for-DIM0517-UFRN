@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:bank_system/pages/consult_balance_page.dart';
 import 'package:bank_system/pages/create_page.dart';
 import 'package:bank_system/pages/credit_page.dart';
