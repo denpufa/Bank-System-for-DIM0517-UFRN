@@ -13,7 +13,7 @@ class _CreatePageState extends State<CreatePage> {
   TextEditingController _numberController = TextEditingController();
 
   var ops = Operation();
-
+  bool isSavings = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,13 +46,28 @@ class _CreatePageState extends State<CreatePage> {
                         labelText: "número da conta",
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 15),
+                    Row(
+                      children: [
+                        Text("Marqui aqui para conta poupançã"),
+                        SizedBox(width: 10),
+                        Checkbox(
+                          value: isSavings,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isSavings = value!;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
                     ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             try {
                               ops.createAccount(
-                                  int.parse(_numberController.text));
+                                  int.parse(_numberController.text), isSavings);
                               showDialog(
                                   context: context,
                                   builder: (context) {
@@ -74,7 +89,7 @@ class _CreatePageState extends State<CreatePage> {
                             }
                           }
                         },
-                        child: Text("Creditar"))
+                        child: Text("Criar conta"))
                   ],
                 ),
               )

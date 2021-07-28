@@ -93,7 +93,7 @@ class _CreditPageState extends State<CreditPage> {
                             }
                           }
                         },
-                        child: Text("Consultar"))
+                        child: Text("Creditar"))
                   ],
                 ),
               )

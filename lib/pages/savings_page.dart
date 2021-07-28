@@ -1,16 +1,15 @@
 import 'package:bank_system/back_end/operations.dart';
 import 'package:flutter/material.dart';
 
-class DebitPage extends StatefulWidget {
-  const DebitPage({Key? key}) : super(key: key);
+class SavingsPage extends StatefulWidget {
+  const SavingsPage({Key? key}) : super(key: key);
 
   @override
-  _DebitPageState createState() => _DebitPageState();
+  _SavingsPageState createState() => _SavingsPageState();
 }
 
-class _DebitPageState extends State<DebitPage> {
+class _SavingsPageState extends State<SavingsPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _numberController = TextEditingController();
   TextEditingController _valueController = TextEditingController();
 
   var ops = Operation();
@@ -30,22 +29,7 @@ class _DebitPageState extends State<DebitPage> {
               key: _formKey,
               child: Column(
                 children: [
-                  Text("Debitar"),
-                  SizedBox(height: 30),
-                  TextFormField(
-                    controller: _numberController,
-                    validator: (value) {
-                      if (value == "") {
-                        return "digite um número";
-                      }
-                    },
-                    autovalidateMode: AutovalidateMode.always,
-                    keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
-                      labelText: "número da conta",
-                    ),
-                  ),
-                  SizedBox(height: 30),
+                  Text("Render juros"),
                   SizedBox(height: 30),
                   TextFormField(
                     controller: _valueController,
@@ -57,22 +41,21 @@ class _DebitPageState extends State<DebitPage> {
                     autovalidateMode: AutovalidateMode.always,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      labelText: "valor a debitar",
+                      labelText: "digite a taxa de juros",
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 15),
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           try {
-                            ops.debit(int.parse(_numberController.text),
-                                double.parse(_valueController.text));
+                            ops.tax = double.parse(_valueController.text);
                             showDialog(
                                 context: context,
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text("sucesso!"),
-                                    content: Text("debito realizado"),
+                                    content: Text("cadastro realizado"),
                                   );
                                 });
                           } catch (e) {
@@ -82,13 +65,13 @@ class _DebitPageState extends State<DebitPage> {
                                 builder: (context) {
                                   return AlertDialog(
                                     title: Text("erro!"),
-                                    content: Text("debito no cadastro"),
+                                    content: Text("erro no cadastro"),
                                   );
                                 });
                           }
                         }
                       },
-                      child: Text("Debitar"))
+                      child: Text("Salvar taxa"))
                 ],
               ),
             )
