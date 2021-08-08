@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test("create account", () {
     Operation op = Operation();
-    var created = op.createAccount(123, false);
+    var created = op.createAccount(123, 'Simples');
     Account ac = Account(number: 123, currentValue: 0);
     expect(created.currentValue, equals(ac.currentValue));
     expect(created.number, equals(ac.number));
@@ -30,14 +30,14 @@ void main() {
   }); */
   test("consult balance", () {
     Operation op = Operation();
-    var created = op.createAccount(123, false);
+    var created = op.createAccount(123, 'Poupança');
     var consult = op.consultBalance(123);
     expect(created.currentValue, equals(consult));
   });
 
   test("credit", () {
     Operation op = Operation();
-    var created = op.createAccount(123, false);
+    var created = op.createAccount(123, 'Bônus');
     var credit = op.credit(123, 100.0);
     expect(created.currentValue, equals(credit));
   });
