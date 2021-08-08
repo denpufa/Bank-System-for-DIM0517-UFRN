@@ -1,15 +1,33 @@
+import 'package:bank_system/back_end/models/bonus_account.dart';
+
 import 'data.dart';
 import './models/account.dart';
+import './models/account_saving.dart';
 
 class Operation {
-  Account createAccount(int number) {
-    Account created = Account(number: number, currentValue: 0);
+  double tax = 10;
+
+  Account createAccount(int number, String accountType) {
+    var created;
+    if (accountType == 'Poupança') {
+      created = AccountSaving(
+        number: number,
+        savingsAcount: true,
+      );
+    } else if (accountType == 'Bônus') {
+      created = BonusAccount(
+        number: number,
+      );
+    } else {
+      created = Account(number: number, currentValue: 0);
+    }
+
     Data.accounts.add(created);
     return created;
   }
 
-
   void transfer(int from, int to, double value) {
+    cumulativeTransferPoints(to, value);
     Data.accounts.forEach((a) {
       if (a.number == from) {
         a.currentValue -= value;
@@ -26,6 +44,7 @@ class Operation {
       }
     });
   }
+
   double consultBalance(int number) {
     double balance = 0.0;
     Data.accounts.forEach((element) {
@@ -37,6 +56,32 @@ class Operation {
     return balance;
   }
 
+  void pointsAccumulatedDeposit(int number) {
+    Data.accounts.forEach((a) {
+      if (a.number == number) {
+        if (a.runtimeType == BonusAccount) {
+          a.cumulativePoints += (a.currentValue / 100).toInt();
+          print(a.cumulativePoints);
+        }
+      }
+    });
+  }
+
+  void cumulativeTransferPoints(int number, double value) {
+    Data.accounts.forEach((a) {
+      if (a.number == number) {
+        if (a.runtimeType == BonusAccount) {
+          if (a.receivedForPoints >= 150) {
+            a.cumulativePoints += 1;
+          } else {
+            a.receivedForPoints += value;
+          }
+          print(a.cumulativePoints);
+        }
+      }
+    });
+  }
+
   double credit(int number, double value) {
     double creditValue = 0.0;
     Data.accounts.forEach((element) {
@@ -45,7 +90,22 @@ class Operation {
         creditValue = element.currentValue;
       }
     });
-
+    pointsAccumulatedDeposit(number);
     return creditValue;
+  }
+
+  double savingsProfits(int number) {
+    double returnValue = 0;
+    Data.accounts.forEach((a) {
+      if (a.number == number) {
+        if (a.runtimeType == AccountSaving) {
+          a.currentValue += (tax * a.currentValue) / 100;
+          returnValue = a.currentValue;
+        } else {
+          returnValue = -1;
+        }
+      }
+    });
+    return returnValue;
   }
 }

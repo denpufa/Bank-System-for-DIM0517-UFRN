@@ -1,3 +1,4 @@
+import 'package:bank_system/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:bank_system/back_end/operations.dart';
 
@@ -9,11 +10,14 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
+  List<String> accounts = ['Simples', 'Poupança', 'Bônus'];
+
+  String dropdownValue = 'Simples';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _numberController = TextEditingController();
 
   var ops = Operation();
-
+  bool isSavings = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,13 +50,55 @@ class _CreatePageState extends State<CreatePage> {
                         labelText: "número da conta",
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 15),
+                    DropdownButton<String>(
+                      value: dropdownValue,
+                      icon: Icon(
+                        Icons.arrow_downward,
+                        color: AppColors.primary,
+                      ),
+                      iconSize: 24,
+                      elevation: 16,
+                      style: TextStyle(color: Colors.black),
+                      underline: Container(
+                        height: 2,
+                        color: AppColors.primary,
+                      ),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                      items: accounts
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                    // Row(
+                    //   children: [
+                    //     Text("Marqui aqui para conta poupança"),
+                    //     SizedBox(width: 10),
+                    //     Checkbox(
+                    //       value: isSavings,
+                    //       onChanged: (bool? value) {
+                    //         setState(() {
+                    //           isSavings = value!;
+                    //         });
+                    //       },
+                    //     ),
+                    //   ],
+                    // ),
+                    SizedBox(height: 15),
                     ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             try {
                               ops.createAccount(
-                                  int.parse(_numberController.text));
+                                  int.parse(_numberController.text),
+                                  dropdownValue);
                               showDialog(
                                   context: context,
                                   builder: (context) {

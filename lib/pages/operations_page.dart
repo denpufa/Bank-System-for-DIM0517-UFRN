@@ -46,6 +46,13 @@ class _OperationsPageState extends State<OperationsPage> {
               },
               child: Text("Transferência"),
             ),
+            SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/profit');
+              },
+              child: Text("Render poupança"),
+            ),
           ],
         ),
       ),
