@@ -1,4 +1,5 @@
 # Bank-System-for-DIM0517-UFRN
+denpufa é rodolfo dantas, aparece 3 contas por que rodolfo está o email do git registrado para rodolfo do trabalho dele é diferente do email registrado na conta do git. mais se vc ver o email é rodolfo.oliveira.106@ufrn.edu.br e da conta do git é rodolfobez15@gmai.com
 
 ## Requisitos da Pull request:
 <ul>

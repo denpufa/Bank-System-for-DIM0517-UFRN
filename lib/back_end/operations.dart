@@ -30,7 +30,15 @@ class Operation {
     cumulativeTransferPoints(to, value);
     Data.accounts.forEach((a) {
       if (a.number == from) {
-        a.currentValue -= value;
+        if (a.runtimeType == AccountSaving) {
+          if (!(a.currentValue -= value < 0)) {
+            a.currentValue -= value;
+          } else {
+            return;
+          }
+        } else {
+          a.currentValue -= value;
+        }
       } else if (a.number == to) {
         a.currentValue += value;
       }
@@ -40,7 +48,13 @@ class Operation {
   void debit(int number, double value) {
     Data.accounts.forEach((a) {
       if (a.number == number) {
-        a.currentValue -= value;
+        if (a.runtimeType == AccountSaving) {
+          if (!(a.currentValue -= value < 0)) {
+            a.currentValue -= value;
+          }
+        } else {
+          a.currentValue -= value;
+        }
       }
     });
   }
@@ -71,7 +85,12 @@ class Operation {
     Data.accounts.forEach((a) {
       if (a.number == number) {
         if (a.runtimeType == BonusAccount) {
-          a.cumulativePoints += (value ~/ 200).toInt();
+          if (a.receivedForPoints >= 150) {
+            a.cumulativePoints += 1;
+          } else {
+            a.receivedForPoints += value;
+          }
+
           print(a.cumulativePoints);
         }
       }
