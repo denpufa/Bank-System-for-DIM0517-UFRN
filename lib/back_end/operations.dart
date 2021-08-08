@@ -71,7 +71,11 @@ class Operation {
     Data.accounts.forEach((a) {
       if (a.number == number) {
         if (a.runtimeType == BonusAccount) {
-          a.cumulativePoints += (value ~/ 200).toInt();
+          if (a.receivedForPoints >= 150) {
+            a.cumulativePoints += 1;
+          } else {
+            a.receivedForPoints += value;
+          }
           print(a.cumulativePoints);
         }
       }
