@@ -39,7 +39,11 @@ class Operation {
             return;
           }
         } else {
-          a.currentValue -= value;
+          if (a.currentValue -= value > -1000) {
+            a.currentValue -= value;
+          } else {
+            return;
+          }
         }
       } else if (a.number == to) {
         a.currentValue += value;
@@ -55,7 +59,9 @@ class Operation {
             a.currentValue -= value;
           }
         } else {
-          a.currentValue -= value;
+          if (a.currentValue -= value > -1000) {
+            a.currentValue -= value;
+          }
         }
       }
     });
