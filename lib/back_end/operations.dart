@@ -7,10 +7,12 @@ import './models/account_saving.dart';
 class Operation {
   double tax = 10;
 
-  Account createAccount(int number, String accountType) {
+  Account createAccount(int number, String accountType,
+      {double? initSavingsValue}) {
     var created;
     if (accountType == 'Poupança') {
       created = AccountSaving(
+        initCurrentValue: initSavingsValue ?? 0,
         number: number,
         savingsAcount: true,
       );
