@@ -15,7 +15,7 @@ class _CreatePageState extends State<CreatePage> {
   String dropdownValue = 'Simples';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController _numberController = TextEditingController();
-
+  TextEditingController _valueSavingsController = TextEditingController();
   var ops = Operation();
   bool isSavings = false;
   @override
@@ -48,6 +48,22 @@ class _CreatePageState extends State<CreatePage> {
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         labelText: "número da conta",
+                      ),
+                    ),
+                    Visibility(
+                      visible: dropdownValue == 'Poupança',
+                      child: TextFormField(
+                        controller: _valueSavingsController,
+                        validator: (value) {
+                          if (value == "") {
+                            return "digite um valor";
+                          }
+                        },
+                        autovalidateMode: AutovalidateMode.always,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: "Valor Inicial",
+                        ),
                       ),
                     ),
                     SizedBox(height: 15),
@@ -98,7 +114,9 @@ class _CreatePageState extends State<CreatePage> {
                             try {
                               ops.createAccount(
                                   int.parse(_numberController.text),
-                                  dropdownValue);
+                                  dropdownValue,
+                                  initSavingsValue: double.parse(
+                                      _valueSavingsController.text));
                               showDialog(
                                   context: context,
                                   builder: (context) {
