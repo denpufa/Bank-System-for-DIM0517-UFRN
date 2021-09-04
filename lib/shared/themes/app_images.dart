@@ -1,4 +1,4 @@
 class AppImages {
-  static const person = "assets/images/person.png";
-  static const logo = "assets/images/logo.svg";
+  static const String person = "assets/images/person.png";
+  static const String logo = "assets/images/logo.svg";
 }

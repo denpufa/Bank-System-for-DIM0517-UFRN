@@ -10,43 +10,43 @@ class CreatePage extends StatefulWidget {
 }
 
 class _CreatePageState extends State<CreatePage> {
-  List<String> accounts = ['Simples', 'Poupança', 'Bônus'];
+  List<String> accounts = <String>['Simples', 'Poupança', 'Bônus'];
 
   String dropdownValue = 'Simples';
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _numberController = TextEditingController();
-  TextEditingController _valueSavingsController = TextEditingController();
-  var ops = Operation();
+  final TextEditingController _numberController = TextEditingController();
+  final TextEditingController _valueSavingsController = TextEditingController();
+  Operation ops = Operation();
   bool isSavings = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("GitBak"),
+        title: const Text("GitBak"),
       ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               Form(
                 key: _formKey,
                 child: Column(
-                  children: [
-                    Text("Criar conta"),
-                    SizedBox(height: 30),
+                  children: <Widget>[
+                    const Text("Criar conta"),
+                    const SizedBox(height: 30),
                     TextFormField(
                       controller: _numberController,
-                      validator: (value) {
+                      validator: (String? value) {
                         if (value == "") {
                           return "digite um número";
                         }
                       },
                       autovalidateMode: AutovalidateMode.always,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "número da conta",
                       ),
                     ),
@@ -54,28 +54,28 @@ class _CreatePageState extends State<CreatePage> {
                       visible: dropdownValue == 'Poupança',
                       child: TextFormField(
                         controller: _valueSavingsController,
-                        validator: (value) {
+                        validator: (String? value) {
                           if (value == "") {
                             return "digite um valor";
                           }
                         },
                         autovalidateMode: AutovalidateMode.always,
                         keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           labelText: "Valor Inicial",
                         ),
                       ),
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     DropdownButton<String>(
                       value: dropdownValue,
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_downward,
                         color: AppColors.primary,
                       ),
                       iconSize: 24,
                       elevation: 16,
-                      style: TextStyle(color: Colors.black),
+                      style: const TextStyle(color: Colors.black),
                       underline: Container(
                         height: 2,
                         color: AppColors.primary,
@@ -107,7 +107,7 @@ class _CreatePageState extends State<CreatePage> {
                     //     ),
                     //   ],
                     // ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
@@ -115,22 +115,24 @@ class _CreatePageState extends State<CreatePage> {
                               ops.createAccount(
                                   int.parse(_numberController.text),
                                   dropdownValue,
-                                  initSavingsValue: double.parse(
-                                      _valueSavingsController.text));
-                              showDialog(
+                                  initSavingsValue: dropdownValue == 'Poupança'
+                                      ? double.parse(
+                                          _valueSavingsController.text)
+                                      : 0.0);
+                              showDialog<AlertDialog>(
                                   context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
+                                  builder: (BuildContext context) {
+                                    return const AlertDialog(
                                       title: Text("sucesso!"),
                                       content: Text("cadastro realizado"),
                                     );
                                   });
                             } catch (e) {
                               print(e.toString());
-                              showDialog(
+                              showDialog<AlertDialog>(
                                   context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
+                                  builder: (BuildContext context) {
+                                    return const AlertDialog(
                                       title: Text("erro!"),
                                       content: Text("erro no cadastro"),
                                     );
@@ -138,7 +140,7 @@ class _CreatePageState extends State<CreatePage> {
                             }
                           }
                         },
-                        child: Text("Criar conta"))
+                        child: const Text("Criar conta"))
                   ],
                 ),
               )

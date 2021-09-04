@@ -10,77 +10,77 @@ class DebitPage extends StatefulWidget {
 
 class _DebitPageState extends State<DebitPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _numberController = TextEditingController();
-  TextEditingController _valueController = TextEditingController();
+  final TextEditingController _numberController = TextEditingController();
+  final TextEditingController _valueController = TextEditingController();
 
-  var ops = Operation();
+  Operation ops = Operation();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("GitBak"),
+        title: const Text("GitBak"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Form(
               key: _formKey,
               child: Column(
-                children: [
-                  Text("Debitar"),
-                  SizedBox(height: 30),
+                children: <Widget>[
+                  const Text("Debitar"),
+                  const SizedBox(height: 30),
                   TextFormField(
                     controller: _numberController,
-                    validator: (value) {
+                    validator: (String? value) {
                       if (value == "") {
                         return "digite um número";
                       }
                     },
                     autovalidateMode: AutovalidateMode.always,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "número da conta",
                     ),
                   ),
-                  SizedBox(height: 30),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   TextFormField(
                     controller: _valueController,
-                    validator: (value) {
+                    validator: (String? value) {
                       if (value == "") {
                         return "digite um número";
                       }
                     },
                     autovalidateMode: AutovalidateMode.always,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "valor a debitar",
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           try {
                             ops.debit(int.parse(_numberController.text),
                                 double.parse(_valueController.text));
-                            showDialog(
+                            showDialog<AlertDialog>(
                                 context: context,
-                                builder: (context) {
-                                  return AlertDialog(
+                                builder: (BuildContext context) {
+                                  return const AlertDialog(
                                     title: Text("sucesso!"),
                                     content: Text("debito realizado"),
                                   );
                                 });
                           } catch (e) {
                             print(e.toString());
-                            showDialog(
+                            showDialog<AlertDialog>(
                                 context: context,
-                                builder: (context) {
-                                  return AlertDialog(
+                                builder: (BuildContext context) {
+                                  return const AlertDialog(
                                     title: Text("erro!"),
                                     content: Text("debito no cadastro"),
                                   );
@@ -88,7 +88,7 @@ class _DebitPageState extends State<DebitPage> {
                           }
                         }
                       },
-                      child: Text("Debitar"))
+                      child: const Text("Debitar"))
                 ],
               ),
             )

@@ -1,3 +1,3 @@
 abstract class Data {
-  static List<dynamic> accounts = [];
+  static List<dynamic> accounts = <dynamic>[];
 }

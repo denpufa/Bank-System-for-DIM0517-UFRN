@@ -38,3 +38,8 @@ denpufa é rodolfo dantas, aparece 3 contas por que rodolfo está o email do git
 <li> Rodolfo (denpufa) </li>
 <li> André Habib (AndreHabib) </l1>
 </ul>
+# Qualidade do código
+<ul>
+<li> Utilização do Linter para manter a qualidade do código </li>
+</ul>
+
