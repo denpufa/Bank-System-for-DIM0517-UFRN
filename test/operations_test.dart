@@ -11,8 +11,8 @@ void main() {
 
   test("credit", () {
     Operation op = Operation();
-    var created = op.createAccount(123, 'Bônus');
-    var credit = op.credit(123, 100.0);
+    final created = op.createAccount(123, 'Bônus');
+    final credit = op.credit(123, 100.0);
     expect(created.currentValue, equals(credit));
   });
 
