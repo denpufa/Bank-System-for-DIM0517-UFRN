@@ -19,7 +19,7 @@ class _SavingsPageState extends State<SavingsPage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("GitBak"),
+        title: const Text("GitBak");
       ),
       body: Center(
         child: Column(

@@ -101,8 +101,6 @@ class Operation {
           } else {
             a.receivedForPoints += value;
           }
-
-          print(a.cumulativePoints);
         }
       }
     });

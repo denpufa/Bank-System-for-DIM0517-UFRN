@@ -94,8 +94,7 @@ class _CreditPageState extends State<CreditPage> {
                             }
                           }
                         },
-                        child: const Text("Creditar"))
-                  ],
+                        child: const Text("Creditar"))   ],
                 ),
               )
             ],

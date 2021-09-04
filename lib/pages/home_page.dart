@@ -87,6 +87,17 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: const Text("Render juros"),
                         ),
+                        SizedBox(height: 10),
+                        ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(AppColors.primary),
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/savings');
+                          },
+                          child: Text("Render juros"),
+                        ),
                       ],
                     ),
                   ),
