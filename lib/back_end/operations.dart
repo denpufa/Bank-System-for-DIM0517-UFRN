@@ -33,13 +33,13 @@ class Operation {
     Data.accounts.forEach((a) {
       if (a.number == from) {
         if (a.runtimeType == AccountSaving) {
-          if (!(a.currentValue -= value < 0)) {
+          if (!(a.currentValue - value < 0)) {
             a.currentValue -= value;
           } else {
             return;
           }
         } else {
-          if (a.currentValue -= value > -1000) {
+          if (a.currentValue - value > -1000) {
             a.currentValue -= value;
           } else {
             return;
