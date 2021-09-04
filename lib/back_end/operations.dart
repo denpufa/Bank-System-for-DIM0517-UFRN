@@ -55,11 +55,13 @@ class Operation {
     Data.accounts.forEach((a) {
       if (a.number == number) {
         if (a.runtimeType == AccountSaving) {
-          if (!(a.currentValue -= value < 0)) {
+          print("oi c");
+          if (!((a.currentValue - value) < 0)) {
+            print("oi a");
             a.currentValue -= value;
           }
         } else {
-          if (a.currentValue -= value > -1000) {
+          if ((a.currentValue - value) > -1000) {
             a.currentValue -= value;
           }
         }
