@@ -10,54 +10,54 @@ class ConsultBalancePage extends StatefulWidget {
 
 class _ConsultBalancePageState extends State<ConsultBalancePage> {
   final GlobalKey<FormState> _formKeyBalance = GlobalKey<FormState>();
-  TextEditingController _numberController = TextEditingController();
+  final TextEditingController _numberController = TextEditingController();
 
-  var ops = Operation();
+  Operation ops = Operation();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Consultar Saldo"),
+        title: const Text("Consultar Saldo"),
       ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: <Widget>[
               Form(
                 key: _formKeyBalance,
                 child: Column(
-                  children: [
-                    Text("Consultar saldo da conta"),
-                    SizedBox(height: 30),
+                  children: <Widget>[
+                    const Text("Consultar saldo da conta"),
+                    const SizedBox(height: 30),
                     TextFormField(
                       controller: _numberController,
-                      validator: (value) {
+                      validator: (String? value) {
                         if (value == "") {
                           return "digite um número";
                         }
                       },
                       autovalidateMode: AutovalidateMode.always,
                       keyboardType: TextInputType.number,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: "número da conta",
                       ),
                     ),
-                    SizedBox(height: 30),
+                    const SizedBox(height: 30),
                     ElevatedButton(
                         onPressed: () {
                           if (_formKeyBalance.currentState!.validate()) {
                             try {
                               ops.consultBalance(
                                   int.parse(_numberController.text));
-                              showDialog(
+                              showDialog<AlertDialog>(
                                   context: context,
-                                  builder: (context) {
+                                  builder: (BuildContext context) {
                                     return AlertDialog(
-                                      title: Text("Consulta realizada:"),
+                                      title: const Text("Consulta realizada:"),
                                       content: Text('Saldo: R\$ ' +
                                           ops
                                               .consultBalance(int.parse(
@@ -67,10 +67,10 @@ class _ConsultBalancePageState extends State<ConsultBalancePage> {
                                   });
                             } catch (e) {
                               print(e.toString());
-                              showDialog(
+                              showDialog<AlertDialog>(
                                   context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
+                                  builder: (BuildContext context) {
+                                    return const AlertDialog(
                                       title: Text("erro!"),
                                       content: Text("erro no cadastro"),
                                     );
@@ -78,7 +78,7 @@ class _ConsultBalancePageState extends State<ConsultBalancePage> {
                             }
                           }
                         },
-                        child: Text("Consultar"))
+                        child: const Text("Consultar"))
                   ],
                 ),
               )

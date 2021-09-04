@@ -12,18 +12,18 @@ void main() {
     expect(c.currentValue, equals(200.1));
   });
   test("create account simples", () {
-    Operation op = Operation();
-    var created = op.createAccount(123, 'Simples');
-    Account ac = Account(number: 123, currentValue: 0);
+    final Operation op = Operation();
+    final Account created = op.createAccount(123, 'Simples');
+    final Account ac = Account(number: 123, currentValue: 0);
     expect(created.currentValue, equals(ac.currentValue));
     expect(created.number, equals(ac.number));
     expect(created.runtimeType, equals(ac.runtimeType));
   });
 
   test("create account Bônus", () {
-    Operation op = Operation();
-    dynamic created = op.createAccount(123, 'Bônus');
-    BonusAccount ac = BonusAccount(
+    final Operation op = Operation();
+    final dynamic created = op.createAccount(123, 'Bônus');
+    final BonusAccount ac = BonusAccount(
       number: 123,
     );
     expect(created.currentValue, equals(ac.currentValue));

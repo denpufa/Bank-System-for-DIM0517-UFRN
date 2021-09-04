@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final Size size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         width: size.width,
         height: size.height,
         child: Stack(
-          children: [
+          children: <Widget>[
             Container(
               color: AppColors.primary,
               width: size.width,
@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
+                children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.only(top: 0, left: 70, right: 70),
                     child: Text(
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                         const EdgeInsets.only(left: 40, right: 40, top: 40),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor:
@@ -63,9 +63,9 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             Navigator.pushNamed(context, '/create');
                           },
-                          child: Text("Cadastrar Conta"),
+                          child: const Text("Cadastrar Conta"),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor:
@@ -74,9 +74,9 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             Navigator.pushNamed(context, '/operations');
                           },
-                          child: Text("Operações"),
+                          child: const Text("Operações"),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor:
@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             Navigator.pushNamed(context, '/savings');
                           },
-                          child: Text("Render juros"),
+                          child: const Text("Render juros"),
                         ),
                       ],
                     ),
