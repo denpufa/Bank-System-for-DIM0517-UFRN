@@ -17,10 +17,7 @@ class _SavingsPageState extends State<SavingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text("GitBak");
-      ),
+      appBar: AppBar(centerTitle: true, title: const Text("GitBak")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
