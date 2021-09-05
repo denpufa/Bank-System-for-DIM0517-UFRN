@@ -53,12 +53,12 @@ class _OperationsPageState extends State<OperationsPage> {
               },
               child: const Text("Render poupança"),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/profit');
               },
-              child: Text("Render poupança"),
+              child: const Text("Render poupança"),
             ),
           ],
         ),

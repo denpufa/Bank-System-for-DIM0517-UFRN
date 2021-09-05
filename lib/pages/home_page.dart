@@ -87,7 +87,7 @@ class _HomePageState extends State<HomePage> {
                           },
                           child: const Text("Render juros"),
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         ElevatedButton(
                           style: ButtonStyle(
                             backgroundColor:
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                           onPressed: () {
                             Navigator.pushNamed(context, '/savings');
                           },
-                          child: Text("Render juros"),
+                          child: const Text("Render juros"),
                         ),
                       ],
                     ),
