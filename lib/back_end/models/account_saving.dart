@@ -1,10 +1,12 @@
 import 'account.dart';
 
 class AccountSaving extends Account {
-  bool savingsAcount;
-
   AccountSaving({
     required int number,
     required this.savingsAcount,
-  }) : super(number: number, currentValue: 0);
+    required this.initCurrentValue,
+  }) : super(number: number, currentValue: initCurrentValue);
+
+  bool savingsAcount;
+  double initCurrentValue;
 }
