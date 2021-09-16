@@ -1,8 +1,8 @@
 import sys
 import re
+#se não tiver no stdin do python lembrar de dar um pip install requests pra essa lib
 import requests
 def main():
-    print("chegou no script")
     with open(sys.argv[1],"r") as fp:
         lines = fp.readlines()
 
@@ -12,7 +12,7 @@ def main():
             if line[0] == "#":
                 continue
             commit_text = line.strip()
-            if re.match('#/d/d-.',commit_text) :
+            if re.match('#\d\d-.',commit_text) :
                 if verify_issue_exist(commit_text[1:3]) :
                     sys.exit(0)
                 else:
@@ -23,7 +23,7 @@ def main():
                 sys.exit(1)
 def verify_issue_exist(number):
     r = requests.get("https://github.com/denpufa/Bank-System-for-DIM0517-UFRN/issues/"+ number)
-    if r.status_code == 400:
+    if r.status_code == 404:
         return False
     else:
         return True

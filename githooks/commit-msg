@@ -1,2 +1,2 @@
 #!/bin/sh
-python githooks/pre-commit.p
+python githooks/pre-commit.py
