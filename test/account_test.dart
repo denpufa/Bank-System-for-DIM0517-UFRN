@@ -12,6 +12,7 @@ void main() {
     expect(c.currentValue, equals(200.1));
   });
   test("create account simples", () {
+    print("ok");
     final Operation op = Operation();
     final Account created = op.createAccount(123, 'Simples');
     final Account ac = Account(number: 123, currentValue: 0);
