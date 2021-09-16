@@ -11,7 +11,6 @@ void main() {
     expect(c.number, equals(300));
     expect(c.currentValue, equals(200.1));
   });
-  print("OMG");
   test("create account simples", () {
     final Operation op = Operation();
     final Account created = op.createAccount(123, 'Simples');
