@@ -1,5 +1,6 @@
 import 'package:bank_system/back_end/operations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class ConsultBalancePage extends StatefulWidget {
   const ConsultBalancePage({Key? key}) : super(key: key);
