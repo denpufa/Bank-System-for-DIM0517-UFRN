@@ -10,61 +10,61 @@ class ProfitPage extends StatefulWidget {
 
 class _ProfitPageState extends State<ProfitPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _valueController = TextEditingController();
+  final TextEditingController _valueController = TextEditingController();
 
-  var ops = Operation();
+  Operation ops = Operation();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("GitBak"),
+        title: const Text("GitBak"),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Form(
               key: _formKey,
               child: Column(
-                children: [
-                  Text("Render pounpança"),
-                  SizedBox(height: 30),
+                children: <Widget>[
+                  const Text("Render pounpança"),
+                  const SizedBox(height: 30),
                   TextFormField(
                     controller: _valueController,
-                    validator: (value) {
+                    validator: (String? value) {
                       if (value == "") {
                         return "digite um número";
                       }
                     },
                     autovalidateMode: AutovalidateMode.always,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "digite o número da conta",
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           try {
                             ops.savingsProfits(
                                 int.parse(_valueController.text));
-                            showDialog(
+                            showDialog<AlertDialog>(
                                 context: context,
-                                builder: (context) {
-                                  return AlertDialog(
+                                builder: (BuildContext context) {
+                                  return const AlertDialog(
                                     title: Text("sucesso!"),
                                     content: Text("rendimento realizado"),
                                   );
                                 });
                           } catch (e) {
                             print(e.toString());
-                            showDialog(
+                            showDialog<AlertDialog>(
                                 context: context,
-                                builder: (context) {
-                                  return AlertDialog(
+                                builder: (BuildContext context) {
+                                  return const AlertDialog(
                                     title: Text("erro!"),
                                     content: Text("rendimento não realizado"),
                                   );
@@ -72,7 +72,7 @@ class _ProfitPageState extends State<ProfitPage> {
                           }
                         }
                       },
-                      child: Text("Render"))
+                      child: const Text("Render"))
                 ],
               ),
             )

@@ -10,60 +10,57 @@ class SavingsPage extends StatefulWidget {
 
 class _SavingsPageState extends State<SavingsPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  TextEditingController _valueController = TextEditingController();
+  final TextEditingController _valueController = TextEditingController();
 
-  var ops = Operation();
+  Operation ops = Operation();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("GitBak"),
-      ),
+      appBar: AppBar(centerTitle: true, title: const Text("GitBak")),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: <Widget>[
             Form(
               key: _formKey,
               child: Column(
-                children: [
-                  Text("Render juros"),
-                  SizedBox(height: 30),
+                children: <Widget>[
+                  const Text("Render juros"),
+                  const SizedBox(height: 30),
                   TextFormField(
                     controller: _valueController,
-                    validator: (value) {
+                    validator: (String? value) {
                       if (value == "") {
                         return "digite um número";
                       }
                     },
                     autovalidateMode: AutovalidateMode.always,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: "digite a taxa de juros",
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           try {
                             ops.tax = double.parse(_valueController.text);
-                            showDialog(
+                            showDialog<AlertDialog>(
                                 context: context,
-                                builder: (context) {
-                                  return AlertDialog(
+                                builder: (BuildContext context) {
+                                  return const AlertDialog(
                                     title: Text("sucesso!"),
                                     content: Text("cadastro realizado"),
                                   );
                                 });
                           } catch (e) {
                             print(e.toString());
-                            showDialog(
+                            showDialog<AlertDialog>(
                                 context: context,
-                                builder: (context) {
-                                  return AlertDialog(
+                                builder: (BuildContext context) {
+                                  return const AlertDialog(
                                     title: Text("erro!"),
                                     content: Text("erro no cadastro"),
                                   );
@@ -71,7 +68,7 @@ class _SavingsPageState extends State<SavingsPage> {
                           }
                         }
                       },
-                      child: Text("Salvar taxa"))
+                      child: const Text("Salvar taxa"))
                 ],
               ),
             )

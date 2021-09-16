@@ -9,7 +9,8 @@ class Operation {
 
   Account createAccount(int number, String accountType,
       {double? initSavingsValue}) {
-    var created;
+    Account created;
+    print(initSavingsValue);
     if (accountType == 'Poupança') {
       created = AccountSaving(
         initCurrentValue: initSavingsValue ?? 0,
@@ -30,16 +31,16 @@ class Operation {
 
   void transfer(int from, int to, double value) {
     cumulativeTransferPoints(to, value);
-    Data.accounts.forEach((a) {
+    Data.accounts.forEach((dynamic a) {
       if (a.number == from) {
         if (a.runtimeType == AccountSaving) {
-          if (!(a.currentValue -= value < 0)) {
+          if (!(a.currentValue - value < 0)) {
             a.currentValue -= value;
           } else {
             return;
           }
         } else {
-          if (a.currentValue -= value > -1000) {
+          if (a.currentValue - value > -1000) {
             a.currentValue -= value;
           } else {
             return;
@@ -52,14 +53,16 @@ class Operation {
   }
 
   void debit(int number, double value) {
-    Data.accounts.forEach((a) {
+    Data.accounts.forEach((dynamic a) {
       if (a.number == number) {
         if (a.runtimeType == AccountSaving) {
-          if (!(a.currentValue -= value < 0)) {
+          print("oi c");
+          if (!((a.currentValue - value) < 0)) {
+            print("oi a");
             a.currentValue -= value;
           }
         } else {
-          if (a.currentValue -= value > -1000) {
+          if ((a.currentValue - value) > -1000) {
             a.currentValue -= value;
           }
         }
@@ -69,9 +72,9 @@ class Operation {
 
   double consultBalance(int number) {
     double balance = 0.0;
-    Data.accounts.forEach((element) {
+    Data.accounts.forEach((dynamic element) {
       if (element.number == number) {
-        balance = element.currentValue;
+        balance = element.currentValue as double;
       }
     });
 
@@ -79,7 +82,7 @@ class Operation {
   }
 
   void pointsAccumulatedDeposit(int number) {
-    Data.accounts.forEach((a) {
+    Data.accounts.forEach((dynamic a) {
       if (a.number == number) {
         if (a.runtimeType == BonusAccount) {
           a.cumulativePoints += (a.currentValue / 100).toInt();
@@ -90,7 +93,7 @@ class Operation {
   }
 
   void cumulativeTransferPoints(int number, double value) {
-    Data.accounts.forEach((a) {
+    Data.accounts.forEach((dynamic a) {
       if (a.number == number) {
         if (a.runtimeType == BonusAccount) {
           if (a.receivedForPoints >= 150) {
@@ -98,8 +101,6 @@ class Operation {
           } else {
             a.receivedForPoints += value;
           }
-
-          print(a.cumulativePoints);
         }
       }
     });
@@ -107,7 +108,7 @@ class Operation {
 
   double credit(int number, double value) {
     double creditValue = 0.0;
-    Data.accounts.forEach((element) {
+    Data.accounts.forEach((dynamic element) {
       if (element.number == number) {
         element.currentValue += value;
         creditValue = element.currentValue;
@@ -119,10 +120,10 @@ class Operation {
 
   double savingsProfits(int number) {
     double returnValue = 0;
-    Data.accounts.forEach((a) {
+    Data.accounts.forEach((dynamic a) {
       if (a.number == number) {
         if (a.runtimeType == AccountSaving) {
-          a.currentValue += (tax * a.currentValue) / 100;
+          a.currentValue += (tax * (a.currentValue as double)) / 100;
           returnValue = a.currentValue;
         } else {
           returnValue = -1;
